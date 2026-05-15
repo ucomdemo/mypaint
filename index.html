@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paint Studio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">本機繪圖工具</p>
+          <h1>Paint Studio</h1>
+        </div>
+        <div class="file-actions" aria-label="檔案操作">
+          <button class="command" id="newCanvas" type="button">新增</button>
+          <button class="command" id="downloadImage" type="button">儲存 PNG</button>
+        </div>
+      </header>
+
+      <section class="workspace" aria-label="繪圖工作區">
+        <aside class="toolbar" aria-label="工具列">
+          <div class="tool-group">
+            <p class="group-title">工具</p>
+            <div class="segmented" role="group" aria-label="繪圖工具">
+              <button class="tool-button active" type="button" data-tool="brush" aria-pressed="true" title="筆刷">
+                <span aria-hidden="true">✎</span>
+                <span>筆刷</span>
+              </button>
+              <button class="tool-button" type="button" data-tool="eraser" aria-pressed="false" title="橡皮擦">
+                <span aria-hidden="true">⌫</span>
+                <span>橡皮擦</span>
+              </button>
+              <button class="tool-button" type="button" data-tool="line" aria-pressed="false" title="直線">
+                <span aria-hidden="true">╱</span>
+                <span>直線</span>
+              </button>
+              <button class="tool-button" type="button" data-tool="rectangle" aria-pressed="false" title="矩形">
+                <span aria-hidden="true">□</span>
+                <span>矩形</span>
+              </button>
+              <button class="tool-button" type="button" data-tool="circle" aria-pressed="false" title="圓形">
+                <span aria-hidden="true">○</span>
+                <span>圓形</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="tool-group">
+            <p class="group-title">顏色</p>
+            <label class="color-picker">
+              <span>目前顏色</span>
+              <input id="colorPicker" type="color" value="#111827" />
+            </label>
+            <div class="swatches" aria-label="快速顏色">
+              <button type="button" data-color="#111827" style="--swatch: #111827" aria-label="黑色"></button>
+              <button type="button" data-color="#ef4444" style="--swatch: #ef4444" aria-label="紅色"></button>
+              <button type="button" data-color="#f97316" style="--swatch: #f97316" aria-label="橘色"></button>
+              <button type="button" data-color="#eab308" style="--swatch: #eab308" aria-label="黃色"></button>
+              <button type="button" data-color="#22c55e" style="--swatch: #22c55e" aria-label="綠色"></button>
+              <button type="button" data-color="#06b6d4" style="--swatch: #06b6d4" aria-label="青色"></button>
+              <button type="button" data-color="#2563eb" style="--swatch: #2563eb" aria-label="藍色"></button>
+              <button type="button" data-color="#7c3aed" style="--swatch: #7c3aed" aria-label="紫色"></button>
+            </div>
+          </div>
+
+          <div class="tool-group">
+            <p class="group-title">筆觸</p>
+            <label class="range-control">
+              <span>粗細 <output id="sizeValue">8</output> px</span>
+              <input id="sizeSlider" type="range" min="1" max="64" value="8" />
+            </label>
+            <label class="toggle-control">
+              <input id="fillShape" type="checkbox" />
+              <span>填滿圖形</span>
+            </label>
+          </div>
+
+          <div class="tool-group">
+            <p class="group-title">畫布</p>
+            <div class="canvas-size">
+              <label>
+                <span>寬</span>
+                <input id="canvasWidth" type="number" min="320" max="2400" value="1200" />
+              </label>
+              <label>
+                <span>高</span>
+                <input id="canvasHeight" type="number" min="240" max="1800" value="760" />
+              </label>
+            </div>
+            <button class="ghost" id="applyCanvasSize" type="button">套用尺寸</button>
+            <button class="danger" id="clearCanvas" type="button">清除畫布</button>
+          </div>
+        </aside>
+
+        <section class="canvas-panel">
+          <div class="canvas-frame">
+            <canvas id="paintCanvas" width="1200" height="760" aria-label="繪圖畫布"></canvas>
+          </div>
+          <footer class="statusbar">
+            <span id="toolStatus">工具：筆刷</span>
+            <span id="pointerStatus">座標：-</span>
+          </footer>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
